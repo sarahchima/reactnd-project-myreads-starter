@@ -21,14 +21,17 @@ class SearchPage extends Component {
 
 	searchBooks = (query) => {
 		if (query === '') {
+			this.setState({
+				books: []
+			})
 			return
 		}
 		BooksAPI.search(query)
 			.then(books => {
+				books = books.length > 0 ? books : [];
 				this.setState({
-					books: books || books.items
+					books
 				})
-
 			})
 
 	} 
